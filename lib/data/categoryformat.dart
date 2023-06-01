@@ -1,13 +1,13 @@
+// ignore_for_file: must_be_immutable, library_private_types_in_public_api
+
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
-
 import '../model/newsmodel.dart';
 import 'news.dart';
 
 class CategoryFragment extends StatefulWidget {
   String category;
-  CategoryFragment({required this.category});
+  CategoryFragment({super.key, required this.category});
   @override
   _CategoryFragmentState createState() => _CategoryFragmentState();
 }
@@ -28,7 +28,6 @@ class _CategoryFragmentState extends State<CategoryFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getNews();
   }
@@ -44,10 +43,10 @@ class _CategoryFragmentState extends State<CategoryFragment> {
               .center, // this is to bring the row text in center
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(right: 50),
+              padding: const EdgeInsets.only(right: 50),
               child: Text(
                 widget.category.toUpperCase(),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ],
@@ -56,21 +55,19 @@ class _CategoryFragmentState extends State<CategoryFragment> {
 
       // category widgets
       body: _loading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-              child: Container(
-                child: ListView.builder(
-                  itemCount: articles.length,
-                  physics: ClampingScrollPhysics(),
-                  shrinkWrap: true, // add this otherwise an error
-                  itemBuilder: (context, index) {
-                    return NewsTemplate(
-                      urlToImage: articles[index].urlToImage!,
-                      title: articles[index].title!,
-                      description: articles[index].description!,
-                    );
-                  },
-                ),
+              child: ListView.builder(
+                itemCount: articles.length,
+                physics: const ClampingScrollPhysics(),
+                shrinkWrap: true, // add this otherwise an error
+                itemBuilder: (context, index) {
+                  return NewsTemplate(
+                    urlToImage: articles[index].urlToImage!,
+                    title: articles[index].title!,
+                    description: articles[index].description!,
+                  );
+                },
               ),
             ),
     );
@@ -79,12 +76,13 @@ class _CategoryFragmentState extends State<CategoryFragment> {
 
 class NewsTemplate extends StatelessWidget {
   String? title, description, url, urlToImage;
-  NewsTemplate({this.title, this.description, this.urlToImage, this.url});
+  NewsTemplate(
+      {super.key, this.title, this.description, this.urlToImage, this.url});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: Column(
         children: <Widget>[
           ClipRRect(
@@ -95,15 +93,15 @@ class NewsTemplate extends StatelessWidget {
                 height: 200,
                 fit: BoxFit.cover,
               )),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             title!,
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
                 color: Colors.black),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             description!,
             style: TextStyle(fontSize: 15.0, color: Colors.grey[800]),

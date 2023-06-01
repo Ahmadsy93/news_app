@@ -16,12 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _controller = TextEditingController();
-  // List<CategoryModel> categories = List<CategoryModel
   List<CategoryModel> categories = <CategoryModel>[];
-
-  // get our newslist first
-
   List<ArticleModel> articles = <ArticleModel>[];
   bool _loading = true;
 
@@ -88,22 +83,6 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-                    // const SizedBox(height: 30),
-                    // TextField(
-                    //   onSubmitted: (value) {
-                    //     getNews();
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (context) => const CategoryTile()));
-                    //   },
-                    //   controller: _controller,
-                    //   decoration: const InputDecoration(
-                    //     hintText: 'Search',
-                    //     prefixIcon: Icon(Icons.search),
-                    //     border: OutlineInputBorder(),
-                    //   ),
-                    // ),
                     const SizedBox(height: 30),
                     ListView.builder(
                       itemCount: articles.length,
